@@ -1,0 +1,209 @@
+Mini Project-16: "Resize the 100 images to 50% (smaller) " using OpenCV
+Acesta este codul pentru a converti o imagine, de la 100% marime, la 50% marime
+
+
+import cv2
+import urllib.request
+import numpy as np
+from IPython.display import display, Image
+
+def fetch_image_from_url(url):
+    """Fetch image from a URL and return as an OpenCV image."""
+    try:
+        with urllib.request.urlopen(url) as resp:
+            image_array = np.asarray(bytearray(resp.read()), dtype="uint8")
+            image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+            return image
+    except Exception as e:
+        print(f"Error fetching image from URL: {e}")
+        return None
+
+def resize_image_to_half(image):
+    """Resize the given image to 50% of its original size."""
+    try:
+        width = image.shape[1] // 2  # Integer division for 50% size
+        height = image.shape[0] // 2
+        dim = (width, height)
+        resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+        return resized
+    except Exception as e:
+        print(f"Error resizing image: {e}")
+        return None
+
+def show_image_in_colab(image):
+    """Convert opencv image to IPython Image and display in Google Colab."""
+    _, encoded_image = cv2.imencode('.png', image)
+    display(Image(data=encoded_image.tobytes()))
+
+# URL of the image to be fetched and resized
+url = 'https://cdn.hswstatic.com/gif/polar-bear-7.jpg'
+
+# Fetch the image
+image = fetch_image_from_url(url)
+
+if image is not None:
+    # Resize the image to 50% of its original size
+    resized_image = resize_image_to_half(image)
+    
+    if resized_image is not None:
+        # Display the resized image in Colab
+        show_image_in_colab(resized_image)
+    else:
+        print("Error resizing the image.")
+else:
+    print("Error fetching the image from the URL.")
+
+
+Acest este codul pentru 100 de imagini
+import cv2
+import urllib.request
+import numpy as np
+from IPython.display import display, Image
+
+def fetch_image_from_url(url):
+    """Fetch image from a URL and return as an OpenCV image."""
+    try:
+        with urllib.request.urlopen(url) as resp:
+            image_array = np.asarray(bytearray(resp.read()), dtype="uint8")
+            image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
+            return image
+    except Exception as e:
+        print(f"Error fetching image from URL ({url}): {e}")
+        return None
+
+def resize_image_to_half(image):
+    """Resize the given image to 50% of its original size."""
+    try:
+        width = image.shape[1] // 2  # Integer division for 50% size
+        height = image.shape[0] // 2
+        dim = (width, height)
+        resized = cv2.resize(image, dim, interpolation=cv2.INTER_AREA)
+        return resized
+    except Exception as e:
+        print(f"Error resizing image: {e}")
+        return None
+
+def show_image_in_colab(image):
+    """Convert opencv image to IPython Image and display in Google Colab."""
+    _, encoded_image = cv2.imencode('.png', image)
+    display(Image(data=encoded_image.tobytes()))
+
+# List of URLs (add your 100 URLs here)
+urls = [
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+     'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+     'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg', 
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+'https://cdn.hswstatic.com/gif/polar-bear-7.jpg',
+    
+    # ... add more URLs here ...
+]
+
+for url in urls:
+    # Fetch the image
+    image = fetch_image_from_url(url)
+
+    if image is not None:
+        # Resize the image to 50% of its original size
+        resized_image = resize_image_to_half(image)
+        
+        if resized_image is not None:
+            # Display the resized image in Colab
+            show_image_in_colab(resized_image)
+        else:
+            print(f"Error resizing the image from URL: {url}")
+    else:
+        print(f"Error fetching the image from the URL: {url}")
