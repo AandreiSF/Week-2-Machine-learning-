@@ -1,0 +1,266 @@
+import cv2
+import requests
+from io import BytesIO
+import numpy as np
+import matplotlib.pyplot as plt
+
+# List of URLs
+urls = [
+    'https://www.akronzoo.org/sites/default/files/styles/square_large/public/assets/animals/Tiger-main.png?h=00546c34&itok=0LXXy7LI',
+    # Add more URLs as needed
+]
+
+# Iterate over the URLs
+for idx, url in enumerate(urls):
+    # Download the image from the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Read the image from the response
+        image_data = BytesIO(response.content)
+        image = cv2.imdecode(np.frombuffer(image_data.read(), np.uint8), 1)
+
+        # Check if the image was successfully decoded
+        if image is None:
+            print(f"Failed to decode image from {url}")
+            continue
+
+        # Convert the image to grayscale
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # Display the grayscale image using Matplotlib
+        plt.imshow(gray_image, cmap='gray')
+        plt.axis('off') # Turn off axis
+        plt.show()
+
+        # Optional: break after converting 100 images
+        if idx == 99:
+            break
+    else:
+        print(f"Failed to download image from {url}")
+
+print('Images successfully converted to grayscale.')
+Codul este pentru a converti mai multe imagini,in exemplu de mai jos am convertit 3 imagini in black and white, cu acest cod pot converti 10 imagini,se pot si mai multe dca modific ceva la cod
+
+
+
+import cv2
+import requests
+from io import BytesIO
+import numpy as np
+import matplotlib.pyplot as plt
+
+# List of URLs (include 10 URLs)
+urls = [
+    'https://images.ctfassets.net/81iqaqpfd8fy/3r4flvP8Z26WmkMwAEWEco/870554ed7577541c5f3bc04942a47b95/78745131.jpg?w=1200&h=1200&fm=jpg&fit=fill',
+    'https://s.iw.ro/gateway/g/ZmlsZVNvdXJjZT1odHRwJTNBJTJGJTJG/c3RvcmFnZTA3dHJhbnNjb2Rlci5yY3Mt/cmRzLnJvJTJGc3RvcmFnZSUyRjIwMjEl/MkYwNyUyRjA5JTJGMTM1MjEzMV8xMzUy/MTMxX3Byb2ZpbWVkaWEtMDU1ODQxMTYz/Mi5qcGcmaGFzaD00ZTk2OWUzZDNmYTc4Yjk1MTkzMTgyYTVjZTZhMzBkZQ==.jpg',
+    'https://th-thumbnailer.cdn-si-edu.com/A7XKQrdCne940tuISIiUsgd1Ru4=/fit-in/1600x0/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer/a9/ff/a9ff31d0-aecd-464e-80c7-873e4651cd2b/mufasa.jpeg',
+    # ... Include 10 URLs
+]
+
+# Iterate over the URLs
+for idx, url in enumerate(urls):
+    # Download the image from the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Read the image from the response
+        image_data = BytesIO(response.content)
+        image = cv2.imdecode(np.frombuffer(image_data.read(), np.uint8), 1)
+
+        # Check if the image was successfully decoded
+        if image is None:
+            print(f"Failed to decode image from {url}")
+            continue
+
+        # Convert the image to grayscale
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # Display the grayscale image using Matplotlib
+        plt.imshow(gray_image, cmap='gray')
+        plt.axis('off') # Turn off axis
+        plt.show()
+
+        # Break after converting 10 images
+        if idx == 9:
+            break
+    else:
+        print(f"Failed to download image from {url}")
+
+print('Images successfully converted to grayscale.')
+
+
+
+This code contains 100 url for colour images with animals that are converted in black and white images
+import cv2
+import requests
+from io import BytesIO
+import numpy as np
+import matplotlib.pyplot as plt
+
+# List of URLs (include 10 URLs)
+urls = [
+    'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+     'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+   'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+    'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+    'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+ 'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+      'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+  'https://bramptonist.com/wp-content/uploads/2017/05/sloth-1280x720.jpg',
+    'https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/DCTM_Penguin_UK_DK_AL644648_p7nd0z.jpg',
+
+
+
+
+
+
+
+
+
+
+
+     
+   
+    # ... Include 100 URLs
+]
+
+# Iterate over the URLs
+for idx, url in enumerate(urls):
+    # Download the image from the URL
+    response = requests.get(url)
+
+    # Check if the request was successful
+    if response.status_code == 200:
+        # Read the image from the response
+        image_data = BytesIO(response.content)
+        image = cv2.imdecode(np.frombuffer(image_data.read(), np.uint8), 1)
+
+        # Check if the image was successfully decoded
+        if image is None:
+            print(f"Failed to decode image from {url}")
+            continue
+
+        # Convert the image to grayscale
+        gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+        # Display the grayscale image using Matplotlib
+        plt.imshow(gray_image, cmap='gray')
+        plt.axis('off') # Turn off axis
+        plt.show()
+
+        # Break after converting 10 images
+        if idx == 99:
+            break
+    else:
+        print(f"Failed to download image from {url}")
+
+print('Images successfully converted to grayscale.')
+
